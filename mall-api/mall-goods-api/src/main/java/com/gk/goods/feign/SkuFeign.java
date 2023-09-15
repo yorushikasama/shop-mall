@@ -1,5 +1,6 @@
 package com.gk.goods.feign;
 
+import com.gk.cart.model.Cart;
 import com.gk.goods.model.Sku;
 import com.gk.util.RespResult;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -33,4 +34,20 @@ public interface SkuFeign {
      */
     @PutMapping("/sku/aditems/type")
     public RespResult updateTypeItems(@RequestParam("id") Integer id);
+
+    /**
+     * 根据ID获取sku
+     * @param id
+     * @return
+     */
+    @GetMapping("/sku/{id}")
+    public RespResult<Sku> one(@PathVariable("id")String id);
+
+    /**
+     * 库存递减
+     * @param carts
+     * @return
+     */
+    @PostMapping("/sku/dcount")
+    RespResult dcount(List<Cart> carts);
 }

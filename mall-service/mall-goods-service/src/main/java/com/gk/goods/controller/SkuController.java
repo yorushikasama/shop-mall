@@ -1,5 +1,6 @@
 package com.gk.goods.controller;
 
+import com.gk.cart.model.Cart;
 import com.gk.goods.model.Sku;
 import com.gk.goods.service.SkuService;
 import com.gk.util.RespResult;
@@ -48,6 +49,29 @@ public class SkuController {
     public RespResult updateTypeItems(@RequestParam("id")Integer id){
         //修改
         skuService.updateTypeSkuItems(id);
+        return RespResult.ok();
+    }
+
+    /**
+     * 根据id获取SKU
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public RespResult<Sku> one(@PathVariable("id")String id){
+        Sku sku = skuService.getById(id);
+        return RespResult.ok(sku);
+    }
+
+
+    /**
+     * 库存递减
+     * @param carts
+     * @return
+     */
+    @PostMapping("/dcount")
+    public RespResult dcount(@RequestBody List<Cart> carts){
+        skuService.dcount(carts);
         return RespResult.ok();
     }
 }

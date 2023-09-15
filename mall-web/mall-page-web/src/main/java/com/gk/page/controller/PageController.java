@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
+// http://localhost:8086/page/{id}
 @RestController
 @RequestMapping(value = "/page")
 public class PageController {

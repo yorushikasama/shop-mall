@@ -2,6 +2,7 @@ package com.gk.goods.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.gk.cart.model.Cart;
 import com.gk.goods.mapper.AdItemsMapper;
 import com.gk.goods.mapper.SkuMapper;
 import com.gk.goods.model.AdItems;
@@ -76,5 +77,20 @@ public class SkuServiceImpl extends ServiceImpl<SkuMapper, Sku> implements SkuSe
                 .map(adItem->adItem.getSkuId())
                 .collect(Collectors.toList());
         return skuids==null || skuids.size()<=0? null : skuMapper.selectBatchIds(skuids);
+    }
+
+
+    /**
+     * 库存递减
+     * @param carts
+     */
+    public void dcount(List<Cart> carts) {
+        for (Cart cart : carts) {
+            //语句级控制，防止超卖
+            int count = skuMapper.decount(cart.getSkuId(), cart.getNum());
+            if(count<=0){
+                throw new RuntimeException("库存不足！");
+            }
+        }
     }
 }

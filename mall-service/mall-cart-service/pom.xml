@@ -3,32 +3,35 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>mall-api</artifactId>
+        <artifactId>mall-service</artifactId>
         <groupId>com.gk</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>mall-goods-api</artifactId>
-    <description>
-        shop_goods对应的Api工程
-    </description>
-<!--    <dependencies>-->
-<!--        <dependency>-->
-<!--            <groupId>com.baomidou</groupId>-->
-<!--            <artifactId>mybatis-plus-annotation</artifactId>-->
-<!--&lt;!&ndash;            <version>3.4.3</version>&ndash;&gt;-->
-<!--            <version>3.3.2</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
-<!--    </dependencies>-->
+
+    <artifactId>mall-cart-service</artifactId>
 
     <dependencies>
+        <!--cart-->
         <dependency>
             <groupId>com.gk</groupId>
             <artifactId>mall-cart-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <!--goodsapi-->
+        <dependency>
+            <groupId>com.gk</groupId>
+            <artifactId>mall-goods-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!--MongoDB-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <version>2.2.10.RELEASE</version>
+        </dependency>
     </dependencies>
 
 </project>
